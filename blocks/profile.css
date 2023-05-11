@@ -42,6 +42,7 @@
   height: 24px;
   border: none;
 }
+
 .profile__button_image {
   width: 100%;
 }
@@ -52,6 +53,9 @@
   border-radius: 2px;
   justify-self: end;
   margin-left: auto;
+}
+.profile__icon {
+  width: 100%;
 }
 .profile__title {
   margin: 7px 0 0;
