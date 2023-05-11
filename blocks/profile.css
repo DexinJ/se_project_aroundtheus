@@ -1,6 +1,7 @@
 .profile {
   position: relative;
   display: flex;
+  box-sizing: border-box;
   align-items: center;
   justify-content: start;
   column-gap: 18px;
@@ -27,9 +28,13 @@
   font-weight: 500;
   font-size: 42px;
   line-height: 48px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 373px;
 }
 .profile__button {
-  background-color: rgba(0, 0, 0, 0);
+  background-color: transparent;
   padding: 0;
 }
 .profile__button:hover {
@@ -37,25 +42,23 @@
   transition: opacity linear 0.1s;
   cursor: pointer;
 }
-.profile__button_name {
+.profile__button_position_name {
   width: 24px;
   height: 24px;
   border: none;
+  background-image: url(../images/Edit-button.svg);
+  background-size: contain;
 }
-
-.profile__button_image {
-  width: 100%;
-}
-.profile__button_out {
+.profile__button_position_out {
   width: 150px;
   height: 50px;
   border: 2px solid #fff;
   border-radius: 2px;
   justify-self: end;
   margin-left: auto;
-}
-.profile__icon {
-  width: 100%;
+  background-image: url(../images/Plus-button.svg);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .profile__title {
   margin: 7px 0 0;
@@ -69,8 +72,9 @@
     font-size: 22px;
     line-height: 27px;
     text-align: center;
+    max-width: 196px;
   }
-  .profile__button_name {
+  .profile__button_position_name {
     width: 18px;
     height: 18px;
   }
@@ -87,7 +91,6 @@
     width: 100%;
   }
   .profile__image {
-    border-radius: 50%;
     width: 35%;
   }
   .profile__name {
@@ -97,9 +100,8 @@
     align-items: center;
     margin: 27px 0 0;
   }
-  .profile__button_out {
+  .profile__button_position_out {
     width: 282px;
-    height: 50px;
     margin: 36px 0 0;
   }
   .profile__title {

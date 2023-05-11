@@ -1,13 +1,14 @@
 .header {
   padding: 45px 0 41px;
   position: relative;
+  box-sizing: border-box;
 }
 .header:after {
   content: "";
   width: 100%;
   position: absolute;
   bottom: 0;
-  left: 0;
+  right: 0;
   opacity: 0.7;
   border: 1px solid #545454;
 }
