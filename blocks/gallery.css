@@ -1,0 +1,12 @@
+.gallery {
+  padding: 48px 0 0;
+  display: flex;
+}
+.gallery__cards {
+  display: flex;
+  row-gap: 20px;
+  column-gap: 17px;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+}

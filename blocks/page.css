@@ -1,0 +1,15 @@
+.page {
+  max-width: 880px;
+  margin: 0 auto;
+  font-family: "Inter", Arial, sans-serif;
+}
+@media screen and (max-width: 893px) {
+  .page {
+    max-width: 96%;
+  }
+}
+@media screen and (max-width: 515px) {
+  .page {
+    max-width: 100%;
+  }
+}
