@@ -10,28 +10,8 @@
   align-content: center;
 }
 .card__image {
-  width: 100%;
-  padding-bottom: 100%;
-  background-size: cover;
-  background-position: center;
-}
-.card__image_yosemite {
-  background-image: url(../images/yosemite.jpg);
-}
-.card__image_lake-louise {
-  background-image: url(../images/lake-louise.jpg);
-}
-.card__image_bald-mountains {
-  background-image: url(../images/bald-mountains.jpg);
-}
-.card__image_latemar {
-  background-image: url(../images/latemar.jpg);
-}
-.card__image_vanoise {
-  background-image: url(../images/vanoise.jpg);
-}
-.card__image_lago {
-  background-image: url(../images/lago.jpg);
+  height: 282px; /* setting it to 100% make the height 376px for some reason*/
+  object-fit: cover;
 }
 .card__bottom {
   display: flex;
@@ -62,9 +42,4 @@
   opacity: 50%;
   transition: opacity linear 0.1s;
   cursor: pointer;
-}
-.card__icon {
-  margin: 0;
-  padding: 0;
-  width: 100%;
 }
