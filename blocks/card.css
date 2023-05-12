@@ -36,7 +36,7 @@
   width: 21px;
   height: 18px;
   background-color: transparent;
-  background-image: url(../images/Like-button.svg);
+  background-image: url(../images/Like.svg);
 }
 .card__button:hover {
   opacity: 50%;
