@@ -42,7 +42,20 @@
         </section>
         <section class="gallery">
           <div class="gallery__cards">
-            <div class="card">
+            <template id="card">
+              <div class="card">
+                <img alt="image" class="card__image" />
+                <div class="card__bottom">
+                  <h2 class="card__text"></h2>
+                  <button
+                    class="card__button"
+                    aria-label="like button"
+                    type="button"
+                  ></button>
+                </div>
+              </div>
+            </template>
+            <!-- <div class="card">
               <img
                 src="./images/yosemite.jpg"
                 alt="Yosemite Valley"
@@ -131,7 +144,7 @@
                   type="button"
                 ></button>
               </div>
-            </div>
+            </div> -->
           </div>
         </section>
       </main>
@@ -144,8 +157,18 @@
         <button class="modal__close"></button>
         <p class="modal__heading">Edit Profile</p>
         <form class="modal__form">
-          <input class="modal__input" type="text" name="name" />
-          <input class="modal__input" type="text" name="title" />
+          <input
+            class="modal__input"
+            type="text"
+            name="name"
+            placeholder="Name"
+          />
+          <input
+            class="modal__input"
+            type="text"
+            name="title"
+            placeholder="Title"
+          />
           <button class="modal__button">Save</button>
         </form>
       </div>
