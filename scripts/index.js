@@ -40,15 +40,12 @@ function handleProfileFormSubmit(event) {
   event.preventDefault();
   personName.textContent = nameInput.value;
   personTitle.textContent = titleInput.value;
-  nameInput.value = "";
-  titleInput.value = "";
-  renderPage();
   displayModal(false);
 }
 
 function renderName() {
-  nameInput.placeholder = personName.textContent;
-  titleInput.placeholder = personTitle.textContent;
+  nameInput.value = personName.textContent;
+  titleInput.value = personTitle.textContent;
 }
 
 function getCardElement(data) {
@@ -61,13 +58,13 @@ function getCardElement(data) {
 
 function displayModal(operation) {
   if (operation) {
+    renderName();
     nameModal.classList.add("modal_opened");
   } else {
     nameModal.classList.remove("modal_opened");
   }
 }
 
-renderName();
 nameButton.addEventListener("click", function () {
   displayModal(true);
 });

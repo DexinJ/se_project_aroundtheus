@@ -64,9 +64,13 @@
     </div>
     <div class="modal">
       <div class="modal__container">
-        <button class="modal__close"></button>
-        <p class="modal__heading">Edit Profile</p>
-        <form class="modal__form">
+        <button
+          class="modal__close"
+          type="button"
+          aria-label="close edit window"
+        ></button>
+        <h2 class="modal__heading">Edit Profile</h2>
+        <form class="modal__form" name="profile-form">
           <input
             class="modal__input"
             type="text"
@@ -79,7 +83,7 @@
             name="title"
             placeholder="Title"
           />
-          <button class="modal__button">Save</button>
+          <button class="modal__button" type="submit">Save</button>
         </form>
       </div>
     </div>

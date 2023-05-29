@@ -45,7 +45,6 @@
 }
 
 .modal__heading {
-  height: 23px;
   font-weight: 900;
   font-size: 24px;
   line-height: 29px;
@@ -84,6 +83,7 @@
   margin: 45px 0 0;
   width: 100%;
   height: 45px;
+  border-radius: 2px;
 }
 .modal__button:hover {
   cursor: pointer;
@@ -91,11 +91,21 @@
   transition: opacity linear 0.1s;
 }
 @media screen and (max-width: 550px) {
+  .modal__container {
+    padding: 25px 22px;
+  }
   .modal__close {
     width: 26px;
     height: 26px;
     top: -48px;
     right: 0;
     background-size: contain;
+  }
+  .modal__heading {
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .modal__form {
+    margin-top: 75px;
   }
 }
