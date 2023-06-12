@@ -110,6 +110,10 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 240px;
 }
 @media screen and (max-width: 550px) {
   .modal__container {

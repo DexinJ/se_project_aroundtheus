@@ -26,9 +26,10 @@ let initialCards = [
 ];
 
 const nameButton = document.querySelector(".profile__button_type_edit");
-const nameModal = document.querySelector("[name = 'nameModal']");
+const nameModal = document.querySelector("#nameModal");
+console.log(nameModal);
 const addButton = document.querySelector(".profile__button_type_add");
-const addModal = document.querySelector("[name = 'addImageModal']");
+const addModal = document.querySelector("#addImageModal");
 const closeNameButton = nameModal.querySelector(".modal__close");
 const closeAddButton = addModal.querySelector(".modal__close");
 const personName = document.querySelector(".profile__name");
@@ -41,7 +42,7 @@ const imageTitleInput = addForm.querySelector("[name='title']");
 const imageLinkInput = addForm.querySelector("[name='link']");
 const cardTemplate = document.querySelector("#card").content;
 const cardGallery = document.querySelector(".gallery__cards");
-const pictureModal = document.querySelector("[name = 'pictureModal']");
+const pictureModal = document.querySelector("#pictureModal");
 const closePictureButton = pictureModal.querySelector(".modal__close");
 const pictureImage = pictureModal.querySelector(".modal__image");
 const pictureCaption = pictureModal.querySelector(".modal__caption");
