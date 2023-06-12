@@ -1,5 +1,6 @@
 .modal {
-  display: none;
+  display: flex;
+  visibility: hidden;
   position: fixed;
   top: 0;
   left: 0;
@@ -11,12 +12,14 @@
   font-family: "Inter", Arial, sans-serif;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 0 19px;
+  opacity: 0;
+  transition: opacity 0.2s ease-out, visibility 0.2s;
 }
 
 .modal_opened {
-  display: flex;
+  visibility: visible;
+  opacity: 1;
 }
-
 .modal__container {
   background-color: white;
   padding: 36px;
@@ -89,6 +92,24 @@
   cursor: pointer;
   opacity: 0.8;
   transition: opacity linear 0.1s;
+}
+.modal__image-container {
+  padding: 0;
+  max-width: 75vw;
+  max-height: 75vh;
+  position: relative;
+}
+.modal__image {
+  width: 100%;
+  padding-bottom: auto;
+}
+.modal__caption {
+  padding: 0;
+  margin: 10px 0 0;
+  color: #fff;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
 }
 @media screen and (max-width: 550px) {
   .modal__container {
