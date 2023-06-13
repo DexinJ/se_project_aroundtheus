@@ -110,17 +110,18 @@ function displayCards() {
   });
 }
 
-nameButton.addEventListener("click", function () {
+nameButton.addEventListener("click", () => {
   fillProfileInputs();
   openModal(nameModal);
 });
-addButton.addEventListener("click", function () {
-  openModal(addModal);
-});
+
+addButton.addEventListener("click", () => openModal(addModal));
+
 closeButtons.forEach((button) => {
   const modal = button.closest(".modal");
   button.addEventListener("click", () => closeModal(modal));
 });
+
 profileForm.addEventListener("submit", handleProfileFormSubmit);
 addForm.addEventListener("submit", handleAddFormSubmit);
 displayCards();
