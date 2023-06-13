@@ -67,17 +67,13 @@ function handlePictureClick(source, caption, alt) {
   openModal(pictureModal);
 }
 
-function handleGalleryClick(event) {
-  let card = event.target.closest(".card");
-  if (event.target.classList.contains("card__like-button")) {
-    event.target.classList.toggle("card__like-button_status_checked");
-  }
-  if (event.target.classList.contains("card__delete-button")) {
-    cardGallery.removeChild(card);
-  }
-  if (event.target.classList.contains("card__image")) {
-    handlePictureClick(event.target.src, card.textContent, event.target.alt);
-  }
+function deleteCard(event) {
+  const card = event.target.closest(".card");
+  cardGallery.removeChild(card);
+}
+
+function likeCard(event) {
+  event.target.classList.toggle("card__like-button_status_checked");
 }
 
 function fillProfileInputs() {
@@ -86,12 +82,21 @@ function fillProfileInputs() {
 }
 
 function getCardElement(data) {
-  let cardElement = cardTemplate.querySelector(".card").cloneNode(true);
-  let cardImage = cardElement.querySelector(".card__image");
+  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+  const cardImage = cardElement.querySelector(".card__image");
+  const cardText = cardElement.querySelector(".card__text");
   cardImage.src = data.link;
   cardImage.alt = data.name;
-  cardElement.querySelector(".card__text").textContent = data.name;
-  cardElement.addEventListener("click", handleGalleryClick);
+  cardText.textContent = data.name;
+  cardImage.addEventListener("click", () =>
+    handlePictureClick(cardImage.src, cardText.textContent, cardImage.alt)
+  );
+  cardElement
+    .querySelector(".card__delete-button")
+    .addEventListener("click", deleteCard);
+  cardElement
+    .querySelector(".card__like-button")
+    .addEventListener("click", likeCard);
   return cardElement;
 }
 
