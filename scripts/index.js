@@ -43,6 +43,7 @@ const pictureModal = document.querySelector("#pictureModal");
 const closeButtons = document.querySelectorAll(".modal__close");
 const pictureImage = pictureModal.querySelector(".modal__image");
 const pictureCaption = pictureModal.querySelector(".modal__caption");
+const modalBackground = document.querySelectorAll(".modal");
 
 function handleProfileFormSubmit(event) {
   event.preventDefault();
@@ -105,6 +106,7 @@ function openModal(modal) {
 }
 
 function closeModal(modal) {
+  resetValidation(modal.querySelector(".modal__form"));
   modal.classList.remove("modal_opened");
 }
 
@@ -130,3 +132,17 @@ closeButtons.forEach((button) => {
 profileForm.addEventListener("submit", handleProfileFormSubmit);
 addForm.addEventListener("submit", handleAddFormSubmit);
 displayCards();
+modalBackground.forEach((mod) => {
+  mod.addEventListener("click", (event) => {
+    const outside = !event.target.closest(".modal__container");
+    if (outside) {
+      closeModal(mod);
+    }
+  });
+});
+window.addEventListener("keydown", (event) => {
+  const openedModal = document.querySelector(".modal_opened");
+  if (event.key === "Escape" && openedModal) {
+    closeModal(openedModal);
+  }
+});
