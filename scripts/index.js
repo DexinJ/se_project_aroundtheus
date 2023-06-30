@@ -106,7 +106,6 @@ function openModal(modal) {
 }
 
 function closeModal(modal) {
-  resetValidation(modal.querySelector(".modal__form"));
   modal.classList.remove("modal_opened");
 }
 
@@ -117,12 +116,20 @@ function displayCards() {
   });
 }
 
+function disableButton(buttonElement) {
+  buttonElement.classList.add("modal__button_disabled");
+  buttonElement.disabled = true;
+}
+
 nameButton.addEventListener("click", () => {
   fillProfileInputs();
   openModal(nameModal);
 });
 
-addButton.addEventListener("click", () => openModal(addModal));
+addButton.addEventListener("click", () => {
+  disableButton(addModal.querySelector(".modal__button"));
+  openModal(addModal);
+});
 
 closeButtons.forEach((button) => {
   const modal = button.closest(".modal");
@@ -140,6 +147,7 @@ modalBackground.forEach((mod) => {
     }
   });
 });
+
 window.addEventListener("keydown", (event) => {
   const openedModal = document.querySelector(".modal_opened");
   if (event.key === "Escape" && openedModal) {
