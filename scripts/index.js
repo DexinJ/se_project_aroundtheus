@@ -40,10 +40,9 @@ const imageLinkInput = addForm.querySelector("[name='link']");
 const cardTemplate = document.querySelector("#card").content;
 const cardGallery = document.querySelector(".gallery__cards");
 const pictureModal = document.querySelector("#pictureModal");
-const closeButtons = document.querySelectorAll(".modal__close");
 const pictureImage = pictureModal.querySelector(".modal__image");
 const pictureCaption = pictureModal.querySelector(".modal__caption");
-const modalBackground = document.querySelectorAll(".modal");
+const modalBackgrounds = document.querySelectorAll(".modal");
 
 function handleProfileFormSubmit(event) {
   event.preventDefault();
@@ -58,6 +57,7 @@ function handleAddFormSubmit(event) {
     getCardElement({ name: imageTitleInput.value, link: imageLinkInput.value })
   );
   event.target.reset();
+  disableButton(addModal.querySelector(".modal__button"));
   closeModal(addModal);
 }
 
@@ -124,8 +124,8 @@ function disableButton(buttonElement) {
 }
 
 function closeByEscape(event) {
-  const openedModal = document.querySelector(".modal_opened");
-  if (event.key === "Escape" && openedModal) {
+  if (event.key === "Escape") {
+    const openedModal = document.querySelector(".modal_opened");
     closeModal(openedModal);
   }
 }
@@ -136,22 +136,24 @@ nameButton.addEventListener("click", () => {
 });
 
 addButton.addEventListener("click", () => {
-  disableButton(addModal.querySelector(".modal__button"));
   openModal(addModal);
 });
 
-closeButtons.forEach((button) => {
-  const modal = button.closest(".modal");
-  button.addEventListener("click", () => closeModal(modal));
-});
-
 profileForm.addEventListener("submit", handleProfileFormSubmit);
+
 addForm.addEventListener("submit", handleAddFormSubmit);
+
 displayCards();
-modalBackground.forEach((mod) => {
-  mod.addEventListener("click", (event) => {
+
+disableButton(addModal.querySelector(".modal__button"));
+
+modalBackgrounds.forEach((mod) => {
+  mod.addEventListener("mousedown", (event) => {
     const outside = !event.target.closest(".modal__container");
-    if (outside) {
+    if (event.target.classList.contains("modal_opened")) {
+      closeModal(mod);
+    }
+    if (event.target.classList.contains("modal__close")) {
       closeModal(mod);
     }
   });
