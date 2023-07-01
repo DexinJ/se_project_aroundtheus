@@ -22,10 +22,19 @@
 }
 
 .modal__container {
+  position: relative;
+}
+
+.modal__card-container {
   background-color: white;
   padding: 36px;
   border-radius: 10px;
-  position: relative;
+}
+
+.modal__image-container {
+  padding: 0;
+  max-width: 75vw;
+  max-height: 75vh;
 }
 
 .modal__close {
@@ -107,12 +116,7 @@
   opacity: 0.2;
   cursor: default;
 }
-.modal__image-container {
-  padding: 0;
-  max-width: 75vw;
-  max-height: 75vh;
-  position: relative;
-}
+
 .modal__image {
   width: 100%;
   padding-bottom: auto;
