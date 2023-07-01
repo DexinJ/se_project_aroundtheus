@@ -124,8 +124,8 @@ function disableButton(buttonElement) {
 }
 
 function closeByEscape(event) {
+  const openedModal = document.querySelector(".modal_opened");
   if (event.key === "Escape" && openedModal) {
-    const openedModal = document.querySelector(".modal_opened");
     closeModal(openedModal);
   }
 }
