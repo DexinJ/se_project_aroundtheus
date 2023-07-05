@@ -60,5 +60,13 @@ function enableValidation() {
   addFormValidator.resetValidation();
 }
 
+function applyTransition() {
+  const modals = Array.from(document.querySelectorAll(".modal"));
+  modals.forEach((modal) => {
+    modal.classList.add("modal__transition");
+  });
+}
+
 displayCards();
 enableValidation();
+applyTransition();

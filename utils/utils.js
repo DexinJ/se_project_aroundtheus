@@ -1,4 +1,5 @@
 import { profileFormValidator, addFormValidator } from "../pages/index.js";
+import { Card } from "../components/Card.js";
 const modalBackgrounds = document.querySelectorAll(".modal");
 const profileForm = document.forms["profile-form"];
 const nameButton = document.querySelector(".profile__button_type_edit");
@@ -12,6 +13,7 @@ const addModal = document.querySelector("#addImageModal");
 const personName = document.querySelector(".profile__name");
 const personTitle = document.querySelector(".profile__title");
 const nameModal = document.querySelector("#nameModal");
+const cardGallery = document.querySelector(".gallery__cards");
 
 function fillProfileInputs() {
   nameInput.value = personName.textContent;
@@ -44,11 +46,15 @@ function handleProfileFormSubmit(event) {
 
 function handleAddFormSubmit(event) {
   event.preventDefault();
-  cardGallery.prepend(
-    getCardElement({ name: imageTitleInput.value, link: imageLinkInput.value })
+  const card = new Card(
+    {
+      name: imageTitleInput.value,
+      link: imageLinkInput.value,
+    },
+    "#card"
   );
+  cardGallery.prepend(card.generateCard());
   event.target.reset();
-  disableButton(addModal.querySelector(".modal__button"));
   closeModal(addModal);
 }
 

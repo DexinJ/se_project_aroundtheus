@@ -13,6 +13,9 @@
   background-color: rgba(0, 0, 0, 0.5);
   padding: 0 19px;
   opacity: 0;
+}
+
+.modal__transition {
   transition: opacity 0.2s ease-out, visibility 0.2s;
 }
 
