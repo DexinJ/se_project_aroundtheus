@@ -1,5 +1,8 @@
-import { profileFormValidator, addFormValidator } from "../pages/index.js";
-import { Card } from "../components/Card.js";
+import {
+  profileFormValidator,
+  addFormValidator,
+  createCard,
+} from "../pages/index.js";
 const modalBackgrounds = document.querySelectorAll(".modal");
 const profileForm = document.forms["profile-form"];
 const nameButton = document.querySelector(".profile__button_type_edit");
@@ -20,7 +23,7 @@ function fillProfileInputs() {
   titleInput.value = personTitle.textContent;
 }
 
-function openModal(modal) {
+export function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", closeByEscape);
 }
@@ -30,7 +33,7 @@ function closeModal(modal) {
   document.removeEventListener("keydown", closeByEscape);
 }
 
-export function closeByEscape(event) {
+function closeByEscape(event) {
   if (event.key === "Escape") {
     const openedModal = document.querySelector(".modal_opened");
     closeModal(openedModal);
@@ -46,14 +49,12 @@ function handleProfileFormSubmit(event) {
 
 function handleAddFormSubmit(event) {
   event.preventDefault();
-  const card = new Card(
-    {
+  cardGallery.prepend(
+    createCard({
       name: imageTitleInput.value,
       link: imageLinkInput.value,
-    },
-    "#card"
+    })
   );
-  cardGallery.prepend(card.generateCard());
   event.target.reset();
   closeModal(addModal);
 }
@@ -75,7 +76,6 @@ addForm.addEventListener("submit", handleAddFormSubmit);
 
 modalBackgrounds.forEach((mod) => {
   mod.addEventListener("mousedown", (event) => {
-    const outside = !event.target.closest(".modal__container");
     if (event.target.classList.contains("modal_opened")) {
       closeModal(mod);
     }

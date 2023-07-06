@@ -45,11 +45,15 @@ export const profileFormValidator = new FormValidator(
 );
 export const addFormValidator = new FormValidator(validationSettings, addForm);
 
+export function createCard(item) {
+  const card = new Card(item, "#card");
+  return card.generateCard();
+}
+
 function displayCards() {
   cardGallery.innerHTML = "";
   initialCards.forEach((item) => {
-    const card = new Card(item, "#card");
-    cardGallery.append(card.generateCard());
+    cardGallery.append(createCard(item));
   });
 }
 

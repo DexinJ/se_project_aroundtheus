@@ -1,4 +1,4 @@
-import { closeByEscape } from "../utils/utils.js";
+import { openModal } from "../utils/utils.js";
 const pictureModal = document.querySelector("#pictureModal");
 const pictureImage = pictureModal.querySelector(".modal__image");
 const pictureCaption = pictureModal.querySelector(".modal__caption");
@@ -49,15 +49,6 @@ export class Card {
     pictureImage.src = this._link;
     pictureImage.alt = this._name;
     pictureCaption.textContent = this._name;
-    pictureModal.classList.add("modal_opened");
-    document.addEventListener("keydown", closeByEscape);
-  }
-
-  _handleCloseModal() {
-    pictureImage.src = "";
-    pictureImage.alt = "";
-    pictureCaption.textContent = "";
-    pictureModal.classList.remove("modal_opened");
-    document.removeEventListener("keydown", closeByEscape);
+    openModal(pictureModal);
   }
 }
