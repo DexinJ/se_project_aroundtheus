@@ -8,18 +8,20 @@
     <meta name="description" content="Photo gallery of around the US." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Around the US</title>
-    <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="body">
     <div class="page">
       <header class="header">
-        <img src="./images/Logo.svg" alt="around the US logo" class="logo" />
+        <img
+          src="<%=require('./images/Logo.svg')%>"
+          alt="around the US logo"
+          class="logo"
+        />
       </header>
       <main class="content">
         <section class="profile">
           <img
-            src="./images/jacques-cousteau.jpg"
+            src="<%=require('./images/jacques-cousteau.jpg')%>"
             alt="Jacques Cousteau"
             class="profile__image"
           />
@@ -136,16 +138,16 @@
         <img
           alt="image"
           class="modal__image"
-          src="./images/jacques-cousteau.jpg"
+          src="<%=require('./images/jacques-cousteau.jpg')%>"
         />
         <p class="modal__caption"></p>
       </div>
     </div>
 
-    <script type="module" src="./pages/index.js"></script>
+    <!-- <script type="module" src="./pages/index.js"></script>
     <script type="module" src="./components/Card.js"></script>
     <script type="module" src="./components/FormValidator.js"></script>
-    <script type="module" src="./utils/utils.js"></script>
+    <script type="module" src="./utils/utils.js"></script> -->
 
     <template id="card">
       <div class="card">

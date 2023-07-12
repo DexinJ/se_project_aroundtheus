@@ -1,6 +1,8 @@
-import { FormValidator } from "../components/FormValidator.js";
-import { Card } from "../components/Card.js";
-
+import FormValidator from "../components/FormValidator.js";
+import Card from "../components/Card.js";
+import "./index.css";
+import Section from "../components/Sections.js";
+import { pictureModal } from "../utils/utils.js";
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -39,6 +41,16 @@ const validationSettings = {
 const cardGallery = document.querySelector(".gallery__cards");
 const profileForm = document.forms["profile-form"];
 const addForm = document.forms["add-form"];
+export const cardSection = new Section(
+  {
+    item: initialCards,
+    renderer: (item) => {
+      cardGallery.append(createCard(item));
+    },
+  },
+  ".gallery__cards"
+);
+
 export const profileFormValidator = new FormValidator(
   validationSettings,
   profileForm
@@ -46,15 +58,16 @@ export const profileFormValidator = new FormValidator(
 export const addFormValidator = new FormValidator(validationSettings, addForm);
 
 export function createCard(item) {
-  const card = new Card(item, "#card");
+  const card = new Card(item, "#card", handleCardClick);
   return card.generateCard();
 }
 
+function handleCardClick(data) {
+  pictureModal.open(data);
+}
+
 function displayCards() {
-  cardGallery.innerHTML = "";
-  initialCards.forEach((item) => {
-    cardGallery.append(createCard(item));
-  });
+  cardSection.renderItems();
 }
 
 function enableValidation() {

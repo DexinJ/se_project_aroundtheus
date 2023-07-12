@@ -1,14 +1,11 @@
-import { openModal } from "../utils/utils.js";
-const pictureModal = document.querySelector("#pictureModal");
-const pictureImage = pictureModal.querySelector(".modal__image");
-const pictureCaption = pictureModal.querySelector(".modal__caption");
 const cardGallery = document.querySelector(".gallery__cards");
 
-export class Card {
-  constructor(data, cardSelector) {
+export default class Card {
+  constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -46,9 +43,6 @@ export class Card {
   }
 
   _handleOpenModal() {
-    pictureImage.src = this._link;
-    pictureImage.alt = this._name;
-    pictureCaption.textContent = this._name;
-    openModal(pictureModal);
+    this._handleCardClick({ name: this._name, link: this._link });
   }
 }
