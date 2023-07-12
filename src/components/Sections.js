@@ -8,7 +8,7 @@ export default class Section {
   renderItems() {
     this._section.innerHTML = "";
     this._item.forEach((item) => {
-      this._renderer(item);
+      this._renderer(item, this._section);
     });
   }
 

@@ -1,5 +1,3 @@
-const cardGallery = document.querySelector(".gallery__cards");
-
 export default class Card {
   constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
@@ -35,7 +33,7 @@ export default class Card {
       this._likeButton.classList.toggle("card__like-button_status_checked");
     });
     this._deleteButton.addEventListener("click", () => {
-      cardGallery.removeChild(this._element);
+      this._element.remove();
     });
     this._image.addEventListener("click", () => {
       this._handleOpenModal();
