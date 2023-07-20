@@ -72,3 +72,17 @@
 .card__like-button_status_checked {
   background-image: url(../images/Like-active.svg);
 }
+
+.card__like-zone {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card__like-number {
+  margin: 1px 0 0;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+}
