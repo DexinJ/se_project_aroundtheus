@@ -14,14 +14,9 @@ export default class Card {
     this._owned = data.owner._id === id;
     this._id = data._id;
     this._handleCardDelete = handleCardDelete;
-    this._like = data.likes.length;
+    this._likes = data.likes;
     this._handleLike = handleLike;
-    this._likedByOwner = false;
-    data.likes.forEach((element) => {
-      if (element._id === id) {
-        this._likedByOwner = true;
-      }
-    });
+    this._userId = id;
   }
 
   _getTemplate() {
@@ -42,10 +37,7 @@ export default class Card {
     this._setEventListeners();
     this._image.src = this._link;
     this._image.alt = this._name;
-    this._likeNumber.textContent = this._like;
-    if (this._likedByOwner) {
-      this._likeButton.classList.add("card__like-button_status_checked");
-    }
+    this._renderLikes();
     this._element.querySelector(".card__text").textContent = this._name;
     if (!this._owned) {
       this._deleteButton.remove();
@@ -76,13 +68,20 @@ export default class Card {
   }
 
   likedByOwner() {
-    return this._likedByOwner;
+    return this._likes.some((like) => like._id === this._userId);
   }
 
-  updateLike(likes) {
-    this._like = likes;
-    this._likeNumber.textContent = this._like;
-    this._likeButton.classList.toggle("card__like-button_status_checked");
-    this._likedByOwner = this._likedByOwner ? false : true;
+  setLikes(likes) {
+    this._likes = likes;
+    this._renderLikes();
+  }
+
+  _renderLikes() {
+    this._likeNumber.textContent = this._likes.length;
+    if (this.likedByOwner()) {
+      this._likeButton.classList.add("card__like-button_status_checked");
+    } else {
+      this._likeButton.classList.remove("card__like-button_status_checked");
+    }
   }
 }

@@ -14,11 +14,12 @@ export default class UserInfo {
       about: this._job.textContent,
     };
   }
-  setUserInfo({ name, about, avatar, _id }) {
-    console.log(avatar);
+  setUserInfo({ name, about, _id }) {
     this._name.textContent = name;
     this._job.textContent = about;
-    this._avatar.src = avatar;
     this.userId = _id;
+  }
+  setAvatar(avatar) {
+    this._avatar.src = avatar;
   }
 }

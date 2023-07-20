@@ -43,6 +43,9 @@ const addForm = document.forms["add-form"];
 const pictureForm = document.forms["profilePic-form"];
 export const nameButton = document.querySelector(".profile__button_type_edit");
 export const addButton = document.querySelector(".profile__button_type_add");
+export const profileButton = document.querySelector(
+  ".profile__image-container"
+);
 export const nameInput = profileForm.querySelector("[name = 'name']");
 export const titleInput = profileForm.querySelector("[name = 'about']");
 export const user = new UserInfo({

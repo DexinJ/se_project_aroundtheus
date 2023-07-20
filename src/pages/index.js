@@ -1,10 +1,10 @@
 import Card from "../components/Card.js";
 import "./index.css";
 import Section from "../components/Sections.js";
-import ProfileImage from "../components/ProfileImage.js";
 import {
   nameButton,
   addButton,
+  profileButton,
   nameInput,
   titleInput,
   user,
@@ -24,9 +24,16 @@ const profilePicModal = new PopupWithForm(
   "#profilePictureModal",
   handleProfilePicSubmit
 );
-const profileImage = new ProfileImage(".profile__image-container", () => {
-  profilePicModal.open();
-});
+const cardSection = new Section(
+  {
+    item: [],
+    renderer: (item, section) => {
+      section.append(createCard(item));
+    },
+  },
+  ".gallery__cards"
+);
+
 function fillProfileInputs() {
   const currentInfo = user.getUserInfo();
   nameInput.value = currentInfo.name;
@@ -68,13 +75,6 @@ function handleAddFormSubmit(data) {
   api
     .addCard(data)
     .then((res) => {
-      const cardSection = new Section(
-        {
-          item: {},
-          renderer: () => {},
-        },
-        ".gallery__cards"
-      );
       cardSection.addItem(createCard(res));
     })
     .catch((err) => {
@@ -105,17 +105,6 @@ function handleCardDelete(card, id) {
   deleteModal.open();
 }
 
-nameButton.addEventListener("click", () => {
-  fillProfileInputs();
-  profileFormValidator.resetValidation();
-  profileModal.open();
-});
-
-addButton.addEventListener("click", () => {
-  addFormValidator.resetValidation();
-  imageModal.open();
-});
-
 function createCard(item) {
   const card = new Card(
     item,
@@ -129,7 +118,7 @@ function createCard(item) {
       api
         .toggleLike(id, card.likedByOwner())
         .then((res) => {
-          card.updateLike(res.likes.length);
+          card.setLikes(res.likes);
         })
         .catch((err) => {
           console.error(err);
@@ -142,10 +131,6 @@ function createCard(item) {
 function handleCardClick(data) {
   pictureModal.open(data);
 }
-
-// function displayCards() {
-//   cardSection.renderItems();
-// }
 
 function enableValidation() {
   profileFormValidator.enableValidation();
@@ -162,33 +147,39 @@ function applyTransition() {
     modal.classList.add("modal__transition");
   });
 }
-profileImage.setEventListeners();
-profileModal.setEventListeners();
-imageModal.setEventListeners();
-pictureModal.setEventListeners();
-deleteModal.setEventListeners();
-profilePicModal.setEventListeners();
 
+function applyEventListeners() {
+  nameButton.addEventListener("click", () => {
+    fillProfileInputs();
+    profileFormValidator.resetValidation();
+    profileModal.open();
+  });
+
+  addButton.addEventListener("click", () => {
+    addFormValidator.resetValidation();
+    imageModal.open();
+  });
+  profileButton.addEventListener("click", () => {
+    addFormValidator.resetValidation();
+    profilePicModal.open();
+  });
+  profileModal.setEventListeners();
+  imageModal.setEventListeners();
+  pictureModal.setEventListeners();
+  deleteModal.setEventListeners();
+  profilePicModal.setEventListeners();
+}
+
+applyEventListeners();
 enableValidation();
 applyTransition();
-api
-  .getUser()
-  .then((res) => {
-    user.setUserInfo(res);
+Promise.all([api.getUser(), api.getInitCards()])
+  .then(([userInfo, cards]) => {
+    user.setUserInfo(userInfo);
+    user.setAvatar(userInfo.avatar);
+    cardSection.setItems(cards);
+    cardSection.renderItems();
   })
   .catch((err) => {
     console.error(err);
   });
-
-api.getInitCards().then((res) => {
-  const cardSection = new Section(
-    {
-      item: res,
-      renderer: (item, section) => {
-        section.append(createCard(item));
-      },
-    },
-    ".gallery__cards"
-  );
-  cardSection.renderItems();
-});
