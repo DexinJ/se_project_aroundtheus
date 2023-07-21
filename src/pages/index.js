@@ -24,15 +24,7 @@ const profilePicModal = new PopupWithForm(
   "#profilePictureModal",
   handleProfilePicSubmit
 );
-const cardSection = new Section(
-  {
-    item: [],
-    renderer: (item, section) => {
-      section.append(createCard(item));
-    },
-  },
-  ".gallery__cards"
-);
+let cardSection;
 
 function fillProfileInputs() {
   const currentInfo = user.getUserInfo();
@@ -45,7 +37,7 @@ function handleProfilePicSubmit(data) {
   api
     .updateProfilePicture(data)
     .then((res) => {
-      user.setUserInfo(res);
+      user.setAvatar(res.avatar);
     })
     .catch((err) => {
       console.error(err);
@@ -177,7 +169,15 @@ Promise.all([api.getUser(), api.getInitCards()])
   .then(([userInfo, cards]) => {
     user.setUserInfo(userInfo);
     user.setAvatar(userInfo.avatar);
-    cardSection.setItems(cards);
+    cardSection = new Section(
+      {
+        items: cards,
+        renderer: (item, section) => {
+          section.append(createCard(item));
+        },
+      },
+      ".gallery__cards"
+    );
     cardSection.renderItems();
   })
   .catch((err) => {

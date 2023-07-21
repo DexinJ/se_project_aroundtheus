@@ -1,7 +1,7 @@
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
-import Api from "../components/Api.js";
+import Api from "./Api.js";
 
 // export const initialCards = [
 //   {
