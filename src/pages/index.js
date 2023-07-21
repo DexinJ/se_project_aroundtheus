@@ -38,6 +38,7 @@ function handleProfilePicSubmit(data) {
     .updateProfilePicture(data)
     .then((res) => {
       user.setAvatar(res.avatar);
+      profilePicModal.close();
     })
     .catch((err) => {
       console.error(err);
@@ -53,6 +54,7 @@ function handleProfileFormSubmit(data) {
     .editProfile(data)
     .then((res) => {
       user.setUserInfo(res);
+      profileModal.close();
     })
     .catch((err) => {
       console.error(err);
@@ -68,6 +70,7 @@ function handleAddFormSubmit(data) {
     .addCard(data)
     .then((res) => {
       cardSection.addItem(createCard(res));
+      imageModal.close();
     })
     .catch((err) => {
       console.error(err);
