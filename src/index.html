@@ -20,11 +20,15 @@
       </header>
       <main class="content">
         <section class="profile">
-          <img
-            src="<%=require('./images/jacques-cousteau.jpg')%>"
-            alt="Jacques Cousteau"
-            class="profile__image"
-          />
+          <div class="profile__image-container">
+            <div class="profile__image-wrapper">
+              <img
+                src="<%=require('./images/jacques-cousteau.jpg')%>"
+                alt="Jacques Cousteau"
+                class="profile__image"
+              />
+            </div>
+          </div>
           <div class="profile__texts">
             <div class="profile__namespace">
               <h1 class="profile__name">Jacques Cousteau</h1>
@@ -50,7 +54,7 @@
         <p class="footer__copyright">© 2022 Around The U.S.</p>
       </footer>
     </div>
-
+    <!-- ----- name changing modal ----- -->
     <div class="modal" id="nameModal">
       <div class="modal__container modal__card-container">
         <button
@@ -77,20 +81,20 @@
             <input
               class="modal__input"
               type="text"
-              name="title"
-              id="owner-title"
-              placeholder="Title"
+              name="about"
+              id="owner-about"
+              placeholder="About"
               required
               minlength="2"
               maxlength="200"
             />
-            <span class="modal__error" id="owner-title-error"></span>
+            <span class="modal__error" id="owner-about-error"></span>
           </label>
           <button class="modal__button" type="submit">Save</button>
         </form>
       </div>
     </div>
-
+    <!-- ----- adding image modal ----- -->
     <div class="modal" id="addImageModal">
       <div class="modal__container modal__card-container">
         <button
@@ -128,6 +132,7 @@
         </form>
       </div>
     </div>
+    <!-- ----- display card image modal ----- -->
     <div class="modal" id="pictureModal">
       <div class="modal__container modal__image-container">
         <button
@@ -143,12 +148,55 @@
         <p class="modal__caption"></p>
       </div>
     </div>
-
-    <!-- <script type="module" src="./pages/index.js"></script>
-    <script type="module" src="./components/Card.js"></script>
-    <script type="module" src="./components/FormValidator.js"></script>
-    <script type="module" src="./utils/utils.js"></script> -->
-
+    <div class="modal" id="deleteModal">
+      <div class="modal__container modal__card-container">
+        <button
+          class="modal__close"
+          type="button"
+          aria-label="close image window"
+        ></button>
+        <h2 class="modal__heading">Are you sure?</h2>
+        <button class="modal__button" type="button">Yes</button>
+      </div>
+    </div>
+    <!-- ----- delete card confirmation modal ----- -->
+    <div class="modal" id="deleteModal">
+      <div class="modal__container modal__card-container">
+        <button
+          class="modal__close"
+          type="button"
+          aria-label="close image window"
+        ></button>
+        <h2 class="modal__heading">Are you sure?</h2>
+        <button class="modal__button" type="button">Yes</button>
+      </div>
+    </div>
+    <!-- ----- change profile picture modal ----- -->
+    <div class="modal" id="profilePictureModal">
+      <div class="modal__container modal__card-container">
+        <button
+          class="modal__close"
+          type="button"
+          aria-label="close edit window"
+        ></button>
+        <h2 class="modal__heading">Change profile picture</h2>
+        <form class="modal__form" name="profilePic-form">
+          <label class="modal__field">
+            <input
+              class="modal__input"
+              type="url"
+              name="link"
+              id="profilePic-link"
+              placeholder="profile picture link"
+              required
+            />
+            <span class="modal__error" id="profilePic-link-error"></span>
+          </label>
+          <button class="modal__button" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+    <!-- ----- card template ----- -->
     <template id="card">
       <div class="card">
         <img alt="image" class="card__image" />
@@ -159,11 +207,14 @@
         ></button>
         <div class="card__bottom">
           <h2 class="card__text"></h2>
-          <button
-            class="card__like-button"
-            aria-label="like button"
-            type="button"
-          ></button>
+          <div class="card__like-zone">
+            <button
+              class="card__like-button"
+              aria-label="like button"
+              type="button"
+            ></button>
+            <p class="card__like-number"></p>
+          </div>
         </div>
       </div>
     </template>
